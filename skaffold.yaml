@@ -14,4 +14,12 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
+    - image: pedro300898/shoes
+      context: shoes
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
    

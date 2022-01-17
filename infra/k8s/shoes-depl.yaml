@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shoes-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: shoes
+  template:
+    metadata:
+      labels:
+        app: shoes
+    spec:
+      containers:
+        - name: shoes
+          image: pedro300898/shoes
+          env:
+            - name: NATS_CLIENT_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: NATS_URL
+              value: 'http://nats-srv:4222'
+            - name: NATS_CLUSTER_ID
+              value: shoesClub
+            - name: MONGO_URI
+              value: 'mongodb://shoes-mongo-srv:27017/shoes'
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_KEY
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: shoes-srv
+spec:
+  selector:
+    app: shoes
+  ports:
+    - name: shoes
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
