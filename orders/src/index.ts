@@ -47,7 +47,7 @@ const start = async () => {
     console.error(err);
   }
   try {
-      mongoose.connect('mongodb://auth-mongo-srv:27017/shoes');
+      mongoose.connect('mongodb://auth-mongo-srv:27017/orders');
       console.log('Connected to MongoDb');
     } catch (err) {
       console.error(err);

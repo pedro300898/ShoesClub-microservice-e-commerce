@@ -24,8 +24,6 @@ spec:
               value: 'http://nats-srv:4222'
             - name: NATS_CLUSTER_ID
               value: shoesClub
-            - name: MONGO_URI
-              value: 'mongodb://shoes-mongo-srv:27017/shoes'
             - name: JWT_KEY
               valueFrom:
                 secretKeyRef:
