@@ -46,12 +46,5 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
-    - image: pedro300898/shoesclub-client
-      context: client
-      docker:
-        dockerfile: Dockerfile
-      sync:
-        manual:
-          - src: '**/*.js'
-            dest: .
+   
    
